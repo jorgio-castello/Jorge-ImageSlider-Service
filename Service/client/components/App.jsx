@@ -45,7 +45,6 @@ class App extends React.Component {
   getRoomsData() {
     Axios.get('/rooms')
       .then((results) => {
-        console.log(results.data);
         this.setState({
           data: results.data,
         });
