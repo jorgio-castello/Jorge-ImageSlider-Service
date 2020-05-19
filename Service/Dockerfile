@@ -16,5 +16,11 @@ RUN npm install
 # What port will the container talk to the outside world with once created?
 EXPOSE 3004
 
+ENV user="postgres"
+ENV password="postgres"
+ENV host="172.17.0.2"
+ENV database="airbnb_mhyml"
+ENV port=5432
+
 # How do you start your app?
 CMD [ "npm", "start" ]
