@@ -1,6 +1,8 @@
 DROP KEYSPACE IF EXISTS similar_properties;
 CREATE KEYSPACE similar_properties;
 
+USE similar_properties;
+
 CREATE TABLE PROPERTY (
   id INT,
   host TEXT,
