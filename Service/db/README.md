@@ -72,7 +72,7 @@ photos list<PHOTOS>
 ```
 id INT PRIMARY KEY
 property <PROPERTY>
-similarProperties list
+similarProperties list<PROPERTY>
 ```
 
 
