@@ -1,5 +1,6 @@
 ## Similar Properties API
 <hr />
+
 ### Get similar properties info
   * GET `/properties/:id/similarHomes`
 
@@ -27,6 +28,7 @@
     ]"
 ```
 <hr />
+
 ### Add similar property relationship
   * POST `/properties/:id/similarHomes/:similarHomeId`
 
@@ -36,6 +38,7 @@
 
 **Success Status Code:** `201`
 <hr />
+
 ### Update similar property relationship
   * PATCH `/properties/:id/similarHomes`
 
@@ -53,6 +56,7 @@
     }
 ```
 <hr/>
+
 ### Delete similar property relationship
   * DELETE `/properties/:id/similarHomes/:similarHomeId`
 
@@ -63,6 +67,7 @@
 **Success Status Code:** `204`
 <hr/>
 <hr/>
+
 ### Add property
   * POST `/properties/createProperty`
 
@@ -84,6 +89,7 @@
 ```
 **Success Status Code:** `201`
 <hr />
+
 ### Update property info
   * PATCH `/properties/:id`
 
@@ -103,6 +109,7 @@
     }
 ```
 <hr />
+
 ### Delete property
   * DELETE `/properties/:id`
 
