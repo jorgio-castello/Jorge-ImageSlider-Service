@@ -1,5 +1,5 @@
 const express = require('express');
-const { getRoomData, createHost, createRoom, updateHost, updateRoom } = require('./routeHandlers.js');
+const { getRoomData, createHost, createRoom, updateHost, updateRoom, deleteHost, deleteRoomsFromHost } = require('./routeHandlers.js');
 
 const app = express();
 app.use(express.json());
@@ -20,6 +20,5 @@ app.post('/createHost', createHost); // Post Route - Host
 app.post('/createRoom', createRoom); // Post Route - Rooms
 app.put('/updateHost', updateHost);  // Put Route - Host
 app.put('/updateRoom', updateRoom);  // Put Route - Rooms
-
-
-// Delete an item
+app.delete('/deleteHost', deleteHost); // Delete Route - Host
+app.delete('/deleteRoomsFromHost', deleteRoomsFromHost); // Delete an item

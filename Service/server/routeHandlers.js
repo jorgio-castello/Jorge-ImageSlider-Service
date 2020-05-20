@@ -56,5 +56,29 @@ module.exports = {
       }
       res.status(204).end();
     });
-  }
+  },
+  deleteHost: (req, res) => {
+    const { host_id } = req.body;
+    const query = `DELETE FROM hosttable WHERE host_id=${host_id}`;
+    db.query(query, (err) => {
+      if (err) {
+        res.status(500).send(err);
+        console.error(err);
+      } else {
+        res.status(204).end();
+      }
+    });
+  },
+  deleteRoomsFromHost: (req, res) => {
+    const { room_id } = req.body;
+    const query = `DELETE FROM roomtable WHERE room_id=${room_id}`;
+    db.query(query, (err) => {
+      if (err) {
+        res.status(500).send(err);
+        console.log(err);
+      } else {
+        res.status(204).end();
+      }
+    });
+  },
 };
