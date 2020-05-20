@@ -1,13 +1,15 @@
 # Similar Properties Database Schema
 <hr>
+
 ## MariaDB
-####HOST TABLE
+
+#### HOST TABLE
 ```
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT
   name NOT NULL VARCHAR(50)
 ```
 
-####PROPERTY TABLE
+#### PROPERTY TABLE
 ```
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT
   location NOT NULL VARCHAR(50)
@@ -18,7 +20,7 @@
   price_per_night NOT NULL SMALLINT UNSIGNED
   host_id INT REFERENCES HOST(id) NOT NULL
 ```
-####SIMILAR PROPERTIES TABLE
+#### SIMILAR PROPERTIES TABLE
 ```
   id INT PRIMARY KEY AUTO_INCREMENT
   similar_home_1 INT REFERENCES PROPERTY(id) NOT NULL
@@ -35,27 +37,28 @@
   similar_home_12 INT REFERENCES PROPERTY(id)
   property_id INT REFERENCES PROPERTY(id) NOT NULL
 ```
-####PHOTOS TABLE
+#### PHOTOS TABLE
 ```
   id INT PRIMARY KEY NOT NULL
   src VARCHAR(255) NOT NULL
   property_id INT REFERENCES PROPERTY(id) NOT NULL
 ```
 <hr />
+
 ### Cassandra
-####HOST TABLE
+#### HOST TABLE
 ```
-id INT PRIMARY KEY
-name TEXT
+  id INT PRIMARY KEY
+  name TEXT
 ```
 
-####PHOTO TABLE
+#### PHOTO TABLE
 ```
   id INT PRIMARY KEY
   src TEXT
 ```
 
-####PROPERTY TABLE
+#### PROPERTY TABLE
 ```
 id INT PRIMARY KEY
 host FROZEN<HOST>
@@ -68,7 +71,7 @@ price_per_night INT
 photos list<PHOTOS>
 ```
 
-####SIMILAR PROPERTIES TABLE
+#### SIMILAR PROPERTIES TABLE
 ```
 id INT PRIMARY KEY
 property <PROPERTY>
