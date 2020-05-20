@@ -84,7 +84,7 @@
       "bed_num": "Number",
       "description": "String",
       "price_per_night": "Number",
-      "img_src": "[ "String" ]"
+      "img_src": [ "String" ]
     }
 ```
 **Success Status Code:** `201`
@@ -105,7 +105,7 @@
       "rating": "Number",
       "description": "String",
       "price_per_night": "Number",
-      "img_src": "[ "String" ]"
+      "img_src": [ "String" ]
     }
 ```
 <hr />
