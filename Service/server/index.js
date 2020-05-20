@@ -1,5 +1,5 @@
 const express = require('express');
-const { getRoomData, createHost, createRoom } = require('./routeHandlers.js');
+const { getRoomData, createHost, createRoom, updateHost, updateRoom } = require('./routeHandlers.js');
 
 const app = express();
 app.use(express.json());
@@ -15,15 +15,11 @@ app.get('*.js', function (req, res, next) {
 });
 
 // Get Route - currently this is sending back the whole DB, will refactor schema to include a property table
-// Related properties will
 app.get('/rooms', getRoomData);
+app.post('/createHost', createHost); // Post Route - Host
+app.post('/createRoom', createRoom); // Post Route - Rooms
+app.put('/updateHost', updateHost);  // Put Route - Host
+app.put('/updateRoom', updateRoom);  // Put Route - Rooms
 
-// Post Route - Host
-app.post('/createHost', createHost);
-
-// Post Route - Rooms
-app.post('/createRoom', createRoom);
-
-// Put Route
 
 // Delete an item

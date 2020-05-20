@@ -34,5 +34,27 @@ module.exports = {
       }
       res.status(201).end();
     });
+  },
+  updateHost: (req, res) => {
+    const { host_id, name } = req.body;
+    const query = `UPDATE hosttable SET name = '${name}' WHERE host_id=${host_id}`;
+    db.query(query, (err) => {
+      if (err) {
+        res.status(500).send(err);
+        console.error(err);
+        return;
+      }
+      res.status(204).end();
+    });
+  },
+  updateRoom: (req, res) => {
+    const { room_id, columnName, newValue } = req.body;
+    const query = `UPDATE roomtable SET ${columnName} = '${newValue}' WHERE room_id=${room_id}`;
+    db.query(query, (err) => {
+      if(err) {
+        res.status(500).send(err);
+      }
+      res.status(204).end();
+    });
   }
 };
