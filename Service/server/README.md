@@ -1,5 +1,5 @@
 ## Similar Properties API
-
+<hr />
 ### Get similar properties info
   * GET `/properties/:id/similarHomes`
 
@@ -17,7 +17,7 @@
         "host_id": "Number",
         "location": "String",
         "rating": "Number",
-        "room_type": "String",
+        "property_type": "String",
         "bed_num": "Number",
         "description": "String",
         "price_per_night": "Number",
@@ -75,7 +75,7 @@
       "host_id": "Number",
       "location": "String",
       "rating": "Number",
-      "room_type": "String",
+      "property_type": "String",
       "bed_num": "Number",
       "description": "String",
       "price_per_night": "Number",
