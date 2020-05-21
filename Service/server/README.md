@@ -3,9 +3,24 @@
 
 ### Get similar properties info
   * GET `/properties/:id/similarHomes`
+  *  __Default:__ Responds with 12 similar properties in the same city as the currently viewed listing
+  * __Optional:__ Request's body can optionally include:
+      *  rankBy: rating, bed_num, __OR__ price_per_night
+      * limit: number
+
+
 
 **Path Parameters:**
   * `id` property id
+
+**Optional Request Body**: Can accept JSON with the following keys to rank results by rating, number of beds, or price.
+
+```json
+    {
+      "rankBy": "[rating || bed_num || price_per_night]",
+      "limit": "Number"
+    }
+```
 
 **Success Status Code:** `200`
 
