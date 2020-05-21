@@ -14,7 +14,7 @@ CREATE TABLE PROPERTY (
   description TEXT,
   price_per_night INT,
   photos LIST<TEXT>,
-  PRIMARY KEY(address, city, rating)
+  PRIMARY KEY(address_id, city, rating)
 );
 
 POTENTIAL GET REQUEST
