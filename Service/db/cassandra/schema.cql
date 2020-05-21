@@ -9,8 +9,8 @@ CREATE TABLE similar_properties.locations (
   PRIMARY KEY(address_id)
 );
 
-CREATE TABLE similar_properties.regions (
-  city TEXT,
+CREATE TABLE similar_properties.propertiesByRating (
+  location TEXT,
   rating DECIMAL,
   property_type TEXT,
   bed_num INT,
@@ -18,6 +18,28 @@ CREATE TABLE similar_properties.regions (
   price_per_night INT,
   awsBlockUrl text,
   PRIMARY KEY(city, rating)
+);
+
+CREATE TABLE similar_properties.propertiesByPrice (
+  location TEXT,
+  rating DECIMAL,
+  property_type TEXT,
+  bed_num INT,
+  description TEXT,
+  price_per_night INT,
+  awsBlockUrl text,
+  PRIMARY KEY(city, price_per_night)
+);
+
+CREATE TABLE similar_properties.propertiesByNumberOfBeds (
+  location TEXT,
+  rating DECIMAL,
+  property_type TEXT,
+  bed_num INT,
+  description TEXT,
+  price_per_night INT,
+  awsBlockUrl text,
+  PRIMARY KEY(city, bed_num)
 );
 
 POTENTIAL GET REQUEST
