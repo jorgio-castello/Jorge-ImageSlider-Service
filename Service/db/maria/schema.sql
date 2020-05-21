@@ -6,25 +6,23 @@ USE similar_properties;
 -- This will represent the cities presented for a recommended home
 CREATE TABLE LOCATION (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  address NOT NULL VARCHAR(50)
-  city NOT NULL VARCHAR(25)
-);
-
-CREATE TABLE PHOTOS (
-  id INT NOT NULL PRIMARY KEY,
-  src VARCHAR(255) NOT NULL,
-  property_id INT NOT NULL REFERENCES PROPERTY(id)
+  location NOT NULL VARCHAR(25)
 );
 
 CREATE TABLE PROPERTY (
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  location_id INT NOT NULL
   rating NOT NULL DECIMAL(3,2) UNSIGNED,
   property_type NOT NULL VARCHAR(25),
   bed_num NOT NULL TINYINT UNSIGNED,
   description NOT NULL VARCHAR(255),
   price_per_night NOT NULL SMALLINT UNSIGNED,
+  awsBlockUrl NOT NULL VARCHAR(255),
+
+  location_id INT NOT NULL
+  CONSTRAINT fk_location_id FOREIGN KEY (location_id) REFERENCES location(id)
 );
+
+-- Research S3 / Cloudflare
 
 -- GET /properties/:id/similarHomes
 
