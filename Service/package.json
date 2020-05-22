@@ -28,6 +28,7 @@
     "cassandra-driver": "^4.5.2",
     "compression-webpack-plugin": "^4.0.0",
     "express": "^4.17.1",
+    "faker": "^4.1.0",
     "jest": "^25.5.4",
     "jest-environment-enzyme": "^7.1.2",
     "jest-enzyme": "^7.1.2",
