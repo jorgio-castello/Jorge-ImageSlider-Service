@@ -3,6 +3,8 @@ CREATE DATABASE similar_properties;
 
 USE similar_properties;
 
+SET FOREIGN_KEY_CHECKS = 0;
+
 -- This will represent the cities presented for a recommended home
 CREATE TABLE LOCATION (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -21,6 +23,8 @@ CREATE TABLE PROPERTY (
   location_id INT NOT NULL,
   CONSTRAINT fk_location_id FOREIGN KEY (location_id) REFERENCES location(id)
 );
+
+LOAD DATA INFILE '/Users/jorgecastello/Code/HackReactor/capstones/SDC/work/ImageService/Service/db/rawData/locationData/MariaCityData.txt' INTO TABLE LOCATION FIELDS TERMINATED BY ',';
 
 -- Research S3 / Cloudflare
 
