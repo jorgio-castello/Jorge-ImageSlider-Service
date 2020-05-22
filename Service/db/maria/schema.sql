@@ -6,19 +6,19 @@ USE similar_properties;
 -- This will represent the cities presented for a recommended home
 CREATE TABLE LOCATION (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  location NOT NULL VARCHAR(25)
+  location VARCHAR(25) NOT NULL
 );
 
 CREATE TABLE PROPERTY (
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  rating NOT NULL DECIMAL(3,2) UNSIGNED,
-  property_type NOT NULL VARCHAR(25),
-  bed_num NOT NULL TINYINT UNSIGNED,
-  description NOT NULL VARCHAR(255),
-  price_per_night NOT NULL SMALLINT UNSIGNED,
-  awsBlockUrl NOT NULL VARCHAR(255),
+  rating DECIMAL(3,2) UNSIGNED NOT NULL,
+  property_type VARCHAR(25) NOT NULL,
+  bed_num TINYINT UNSIGNED NOT NULL,
+  description VARCHAR(255) NOT NULL,
+  price_per_night SMALLINT UNSIGNED NOT NULL,
+  awsBlockUrl VARCHAR(255) NOT NULL,
 
-  location_id INT NOT NULL
+  location_id INT NOT NULL,
   CONSTRAINT fk_location_id FOREIGN KEY (location_id) REFERENCES location(id)
 );
 
