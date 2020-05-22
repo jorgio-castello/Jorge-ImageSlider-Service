@@ -1,5 +1,6 @@
 DROP KEYSPACE IF EXISTS similar_properties;
-CREATE KEYSPACE similar_properties;
+CREATE KEYSPACE similar_properties
+WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 3};
 
 USE similar_properties;
 
@@ -17,7 +18,7 @@ CREATE TABLE similar_properties.propertiesByRating (
   description TEXT,
   price_per_night INT,
   awsBlockUrl text,
-  PRIMARY KEY(city, rating)
+  PRIMARY KEY(location, rating)
 );
 
 CREATE TABLE similar_properties.propertiesByPrice (
@@ -28,7 +29,7 @@ CREATE TABLE similar_properties.propertiesByPrice (
   description TEXT,
   price_per_night INT,
   awsBlockUrl text,
-  PRIMARY KEY(city, price_per_night)
+  PRIMARY KEY(location, price_per_night)
 );
 
 CREATE TABLE similar_properties.propertiesByNumberOfBeds (
@@ -39,13 +40,5 @@ CREATE TABLE similar_properties.propertiesByNumberOfBeds (
   description TEXT,
   price_per_night INT,
   awsBlockUrl text,
-  PRIMARY KEY(city, bed_num)
+  PRIMARY KEY(location, bed_num)
 );
-
-POTENTIAL GET REQUEST
--- GET /properties/:id/similarHomes
-
-STEP 1: GET THE CITY OF THE PROPERTY
-- SELECT city FROM similar_properties.regions WHERE address_id=${id}
-STEP 2: GET THE TOP 12 HOMES BASED ON RATING IN THAT CITY
-- SELECT * FROM similar_
