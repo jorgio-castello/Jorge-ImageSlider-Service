@@ -26,6 +26,8 @@ CREATE TABLE PROPERTY (
 
 LOAD DATA INFILE '/Users/jorgecastello/Code/HackReactor/capstones/SDC/work/ImageService/Service/db/rawData/locationData/MariaCityData.txt' INTO TABLE LOCATION FIELDS TERMINATED BY ',';
 
+LOAD DATA INFILE '/Users/jorgecastello/Code/HackReactor/capstones/SDC/work/ImageService/Service/db/rawData/propertyData/MariaPropertyData.txt' INTO TABLE PROPERTY FIELDS TERMINATED BY ',';
+
 -- Research S3 / Cloudflare
 
 -- GET /properties/:id/similarHomes
