@@ -7,3 +7,6 @@ coverage/
 package-lock.json
 
 config.js
+
+db/rawData/locationData/MariaCityData.txt
+db/rawData/propertyData/MariaPropertyData.txt
