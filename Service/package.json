@@ -10,7 +10,8 @@
   "scripts": {
     "seed": "psql -U postgres < schema.sql",
     "seedCassandra": "cqlsh 127.0.0.1 9042 source < './db/cassandra/schema.cql'",
-    "seedMaria": "bash ./db/dbBash/maria/loadSchema.bash",
+    "createDataAndSeedMaria": "bash ./db/dbBash/maria/createDataAndSeedDB.bash",
+    "seedMaria": "bash ./db/dbBash/maria/seedDB.bash",
     "react-dev": "webpack -d --watch",
     "server-dev": "nodemon server/index.js",
     "start": "node server/index.js",
