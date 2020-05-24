@@ -10,3 +10,4 @@ config.js
 
 db/rawData/locationData/MariaCityData.txt
 db/rawData/propertyData/MariaPropertyData.txt
+db/rawData/photoData/photos/
