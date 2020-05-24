@@ -29,3 +29,5 @@ const writeMariaPropertyData = () => {
 };
 
 writeMariaPropertyData();
+
+// Need to read in photo data, pass it to createMariaPropertyStr, and figure out a way to get that into .txt file
