@@ -16,9 +16,9 @@ CREATE TABLE PROPERTY (
   rating DECIMAL(3,2) UNSIGNED NOT NULL,
   property_type VARCHAR(25) NOT NULL,
   bed_num TINYINT UNSIGNED NOT NULL,
-  description VARCHAR(255) NOT NULL,
+  description VARCHAR(100) NOT NULL,
   price_per_night SMALLINT UNSIGNED NOT NULL,
-  awsBlockUrl VARCHAR(255) NOT NULL,
+  awsBlockUrl VARCHAR(100) NOT NULL,
 
   location_id INT NOT NULL,
   CONSTRAINT fk_location_id FOREIGN KEY (location_id) REFERENCES location(id)
