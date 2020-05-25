@@ -9,7 +9,7 @@
   },
   "scripts": {
     "seed": "psql -U postgres < schema.sql",
-    "seedCassandra": "cqlsh 127.0.0.1 9042 source < './db/cassandra/schema.cql'",
+    "createDataAndSeedCassandra": "bash ./db/dbBash/cassandra/createDataAndSeedDB.bash",
     "createDataAndSeedMaria": "bash ./db/dbBash/maria/createDataAndSeedDB.bash",
     "seedMaria": "bash ./db/dbBash/maria/seedDB.bash",
     "react-dev": "webpack -d --watch",
