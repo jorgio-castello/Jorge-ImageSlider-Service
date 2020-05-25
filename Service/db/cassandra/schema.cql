@@ -42,3 +42,5 @@ CREATE TABLE similar_properties.propertiesByNumberOfBeds (
   awsBlockUrl text,
   PRIMARY KEY(location, bed_num)
 );
+
+COPY similar_properties.locations from '/Users/jorgecastello/Code/HackReactor/capstones/SDC/work/ImageService/Service/db/rawData/locationData/CassandraCityData.csv';
