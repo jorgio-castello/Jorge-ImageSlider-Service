@@ -9,5 +9,6 @@ package-lock.json
 config.js
 
 db/rawData/locationData/MariaCityData.txt
+db/rawData/locationData/CassandraCityData.csv
 db/rawData/propertyData/MariaPropertyData.txt
 db/rawData/photoData/photos/
