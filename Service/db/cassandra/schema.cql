@@ -44,3 +44,5 @@ CREATE TABLE similar_properties.propertiesByNumberOfBeds (
 );
 
 COPY similar_properties.locations from '/Users/jorgecastello/Code/HackReactor/capstones/SDC/work/ImageService/Service/db/rawData/locationData/CassandraCityData.csv';
+
+COPY similar_properties.propertiesByRating from '/Users/jorgecastello/Code/HackReactor/capstones/SDC/work/ImageService/Service/db/rawData/propertyData/CassandraPropertyData.csv';
