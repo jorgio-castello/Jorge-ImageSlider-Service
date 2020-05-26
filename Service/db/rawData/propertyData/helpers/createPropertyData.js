@@ -28,9 +28,9 @@ const createMariaPropertyData = (blockUrls, numberOfProperties) => {
   return propertyStrArr;
 };
 
-// ----------------------------------------------------------------------------------
-// CASSANDRA - Create property data
-// ----------------------------------------------------------------------------------
+  // ----------------------------------------------------------------------------------
+  // CASSANDRA - Create property data
+  // ----------------------------------------------------------------------------------
 const createCassandraPropertyData = (blockUrls, numberOfProperties, callback) => {
   let propertyStr = '';
   const propertyStrArr = [];

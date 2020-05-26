@@ -2,8 +2,6 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 
-const numberOfProperties = 10000000;
-
 const mariaPropertyDataPath = path.join(__dirname, './MariaPropertyData.txt');
 const cassandraPropertyDataPath = path.join(__dirname, './CassandraPropertyData.csv');
 const photoBlockUrls = path.join(__dirname, '../photoData/S3-picture-urls.txt');
@@ -13,7 +11,7 @@ const { createCassandraPropertyData, createMariaPropertyData } = require('./help
 // ----------------------------------------------------------------------------------
 // MARIA - Write Property Data to .txt file
 // ----------------------------------------------------------------------------------
-const writeMariaPropertyData = () => {
+const writeMariaPropertyData = (numberOfProperties) => {
   fs.readFile(photoBlockUrls, 'utf-8', (err, photoBlocksStr) => {
     if (err) {
       throw new Error(err);
@@ -46,7 +44,7 @@ const writeMariaPropertyData = () => {
 // ----------------------------------------------------------------------------------
 // CASSANDRA - Write Property Data to .csv file
 // ----------------------------------------------------------------------------------
-const writeCassandraPropertyData = () => {
+const writeCassandraPropertyData = (numberOfProperties) => {
   fs.readFile(photoBlockUrls, 'utf-8', (err, photoBlocksStr) => {
     if (err) {
       throw new Error(err);
@@ -65,7 +63,7 @@ const writeCassandraPropertyData = () => {
           }
         }
         const startTime = new Date();
-        console.log(`Starting to write to txt file called ${path.basename(cassandraPropertyDataPath)}`);
+        console.log(`Starting to write to csv file called ${path.basename(cassandraPropertyDataPath)}`);
         createCassandraPropertyCSVFile();
         const endTime = new Date();
         const time = endTime.getTime() / 1000 - startTime.getTime() / 1000;
@@ -75,8 +73,5 @@ const writeCassandraPropertyData = () => {
   });
 }
 
-// writeMariaPropertyData();
-writeCassandraPropertyData();
-
-// Work on generating three sets of Cassandra Data for queries
-// We will need to update Cassandra OG table to include rating, price, beds
+module.exports.writeMariaPropertyData = writeMariaPropertyData;
+module.exports.writeCassandraPropertyData = writeCassandraPropertyData;
