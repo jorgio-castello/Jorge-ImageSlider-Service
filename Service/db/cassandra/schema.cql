@@ -17,8 +17,10 @@ CREATE TABLE similar_properties.propertiesByRating (
   bed_num INT,
   description TEXT,
   price_per_night INT,
+  createdAt uuid,
   awsBlockUrl text,
-  PRIMARY KEY(location, rating)
+
+  PRIMARY KEY(location, rating, createdAt)
 )
 WITH CLUSTERING ORDER BY(rating DESC);
 
@@ -52,8 +54,8 @@ COPY similar_properties.propertiesByRating from '/Users/jorgecastello/Code/HackR
 
 COPY similar_properties.propertiesByRating(location, price_per_night, awsblockurl, bed_num, description, property_type, rating) to '/Users/jorgecastello/Code/HackReactor/capstones/SDC/work/ImageService/Service/db/rawData/propertyData/CassandraPropertyDataByPrice.csv';
 
-COPY similar_properties.propertiesByPrice from '/Users/jorgecastello/Code/HackReactor/capstones/SDC/work/ImageService/Service/db/rawData/propertyData/CassandraPropertyDataByPrice.csv';
-
 COPY similar_properties.propertiesByRating(location, bed_num, awsblockurl, description, price_per_night, property_type, rating) to '/Users/jorgecastello/Code/HackReactor/capstones/SDC/work/ImageService/Service/db/rawData/propertyData/CassandraPropertyDataByBeds.csv';
+
+COPY similar_properties.propertiesByPrice from '/Users/jorgecastello/Code/HackReactor/capstones/SDC/work/ImageService/Service/db/rawData/propertyData/CassandraPropertyDataByPrice.csv';
 
 COPY similar_properties.propertiesByNumberOfBeds from '/Users/jorgecastello/Code/HackReactor/capstones/SDC/work/ImageService/Service/db/rawData/propertyData/CassandraPropertyDataByBeds.csv';
