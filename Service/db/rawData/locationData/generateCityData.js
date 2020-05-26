@@ -18,7 +18,8 @@ const generateTxtDataForMaria = (cityStrMaria) => {
       throw new Error(err);
     }
     const endTime = new Date();
-    console.log(`Finished writing city date to ${path.basename(mariaTxtFilePath)} in ${Math.floor(endTime.getTime() / 1000 - startTime.getTime() /1000)}s`
+    console.log(`Finished writing city data to ${path.basename(mariaTxtFilePath)}
+      in ${Math.floor(endTime.getTime() / 1000 - startTime.getTime() /1000)}s`
     );
   });
 };
@@ -26,6 +27,8 @@ const generateTxtDataForMaria = (cityStrMaria) => {
 // CASSANDRA - Location Data csv file generation for bulk loading into DB
 // ----------------------------------------------------------------------------------
 const generateCSVDataForCassandra = (cityArrCassandra, count = 0) => {
+  const startTime = new Date();
+  console.log(`Writing city data for Cassandra to ${path.basename(cassandraCSVFilePath)}`)
   if (cityArrCassandra.length !== count) {
     fs.appendFile(cassandraCSVFilePath, cityArrCassandra[count], (err) => {
       if (err) {
@@ -34,6 +37,11 @@ const generateCSVDataForCassandra = (cityArrCassandra, count = 0) => {
         generateCSVDataForCassandra(cityArrCassandra, count + 1);
       }
     });
+  } else {
+    const endTime = new Date();
+    console.log(`Finished writing city data to ${path.basename(cassandraCSVFilePath)}
+      in ${Math.floor(endTime.getTime() / 1000 - startTime.getTime() /1000)}s`
+    );
   }
 }
 // ----------------------------------------------------------------------------------
