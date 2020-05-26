@@ -1,4 +1,5 @@
 const os = require('os');
+const uuid = require('uuid');
 
 const { generatePropertyType,   // generates a random property
         numberOfBeds,           // generates a random number of beds based on property type
@@ -22,15 +23,11 @@ const createMariaPropertyStr = (primaryKey, photoUrl) => {
   return `${primaryKey},${rating},'${property_type}',${bed_num},'${description}',${price_per_night},'${awsBlockUrl}',${location_id}${os.EOL}`;
 };
 
-const createCassandraPropertyStr = (location, photoUrl) => {
-  const rating = generateRandomNumber(100, 500) / 100;
-  const property_type = generatePropertyType();
-  const bed_num = numberOfBeds[property_type]();
-  const price_per_night = bed_num * priceByPropertyPerRoom[property_type]();
+const createCassandraPropertyStrByRating = (location, photoUrl, propertyType, rating, bedNums, pricePerNight) => {
   const description = generateDescription();
 
-  return `${location},${rating},${photoUrl},${bed_num},${description},${price_per_night},${property_type}${os.EOL}`;
+  return `${location},${rating},${uuid.v1()},${photoUrl},${bedNums},${description},${pricePerNight},${propertyType}${os.EOL}`;
 };
 
 module.exports.createMariaPropertyStr = createMariaPropertyStr;
-module.exports.createCassandraPropertyStr = createCassandraPropertyStr;
+module.exports.createCassandraPropertyStrByRating = createCassandraPropertyStrByRating;
