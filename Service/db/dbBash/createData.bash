@@ -24,10 +24,10 @@ rm $cassandraPropertyByBedsCSV || true
 
 # Create new data files --------------------------------------------------------------------
 echo "GENERATING MARIA LOCATIONS DATA..."
-# node --max-old-space-size=20000 $createLocationsMaria
+node --max-old-space-size=20000 $createLocationsMaria
 echo "GENERATING MARIA PROPERTIES DATA..."
-# node --max-old-space-size=20000 $createPropertiesMaria
+node --max-old-space-size=20000 $createPropertiesMaria
 echo "GENERATING CASSANDRA LOCATIONS DATA..."
-# node --max-old-space-size=20000 $createLocationsCassandra
+node --max-old-space-size=20000 $createLocationsCassandra
 echo "GENERATING CASSANDRA PROPERTIES DATA..."
-# node --max-old-space-size=20000 $createPropertiesCassandra
+node --max-old-space-size=20000 $createPropertiesCassandra
