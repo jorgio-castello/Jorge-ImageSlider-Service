@@ -4,6 +4,9 @@ const os = require('os');
 const path = require('path');
 const { createMariaPropertyStr, createCassandraPropertyStrByRating } = require('./createPropertyStr');
 
+// ----------------------------------------------------------------------------------
+// MARIA - Create property data
+// ----------------------------------------------------------------------------------
 const createMariaPropertyData = (blockUrls, numberOfProperties) => {
   let propertyStr = '';
   const propertyStrArr = [];
@@ -25,6 +28,9 @@ const createMariaPropertyData = (blockUrls, numberOfProperties) => {
   return propertyStrArr;
 };
 
+// ----------------------------------------------------------------------------------
+// CASSANDRA - Create property data
+// ----------------------------------------------------------------------------------
 const createCassandraPropertyData = (blockUrls, numberOfProperties, callback) => {
   let propertyStr = '';
   const propertyStrArr = [];
@@ -44,13 +50,13 @@ const createCassandraPropertyData = (blockUrls, numberOfProperties, callback) =>
           console.log(`Working on Property #${i}`);
         }
 
-        const bedNums = cities[i - 1][1];
-        const city = cities[i - 1][2];
-        const pricePerNight = cities[i - 1][3];
-        const propertyType = cities[i - 1][4];
-        const rating = cities[i - 1][5];
+        // Grab appropriate data from locations table to maintain constistency during db seeding
+        const [ propertyId, bedNums, city, pricePerNight, propertyType, rating ] = cities[i - 1];
 
-        propertyStr += createCassandraPropertyStrByRating(city, faker.random.arrayElement(blockUrls), propertyType, rating, bedNums, pricePerNight);
+        // Generate other data needed for Cassandra Property Str
+        const randomBlockUrl = faker.random.arrayElement(blockUrls);
+
+        propertyStr += createCassandraPropertyStrByRating(city, randomBlockUrl, propertyType, rating, bedNums, pricePerNight);
       }
 
       if (propertyStr.length) {
