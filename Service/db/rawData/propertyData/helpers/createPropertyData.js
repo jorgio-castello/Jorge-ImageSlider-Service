@@ -33,7 +33,8 @@ const createCassandraPropertyData = (blockUrls, numberOfProperties, callback) =>
     if (err) {
       throw new Error(err);
     } else {
-      const cities = data.split(os.EOL).map(item => item.split(',')).map(row => row[1]);
+      const cities = data.split(os.EOL).map(item => item.split(','));
+      cities.pop();
 
       console.log('Working on Property #1');
       for (let i = 1; i <= numberOfProperties; i++) {
@@ -42,7 +43,14 @@ const createCassandraPropertyData = (blockUrls, numberOfProperties, callback) =>
           propertyStr = '';
           console.log(`Working on Property #${i}`);
         }
-        propertyStr += createCassandraPropertyStrByRating(faker.random.arrayElement(cities), faker.random.arrayElement(blockUrls));
+
+        const bedNums = cities[i - 1][1];
+        const city = cities[i - 1][2];
+        const pricePerNight = cities[i - 1][3];
+        const propertyType = cities[i - 1][4];
+        const rating = cities[i - 1][5];
+
+        propertyStr += createCassandraPropertyStrByRating(city, faker.random.arrayElement(blockUrls), propertyType, rating, bedNums, pricePerNight);
       }
 
       if (propertyStr.length) {
