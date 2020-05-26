@@ -6,7 +6,11 @@ USE similar_properties;
 
 CREATE TABLE similar_properties.locations (
   address_id INT,
+  bed_num INT,
   location TEXT,
+  price_per_night INT,
+  property_type TEXT,
+  rating DECIMAL,
   PRIMARY KEY(address_id)
 );
 
