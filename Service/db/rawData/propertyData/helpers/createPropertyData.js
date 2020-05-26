@@ -2,7 +2,7 @@ const faker = require('faker');
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
-const { createMariaPropertyStr, createCassandraPropertyStr } = require('./createPropertyStr');
+const { createMariaPropertyStr, createCassandraPropertyStrByRating } = require('./createPropertyStr');
 
 const createMariaPropertyData = (blockUrls, numberOfProperties) => {
   let propertyStr = '';
@@ -42,7 +42,7 @@ const createCassandraPropertyData = (blockUrls, numberOfProperties, callback) =>
           propertyStr = '';
           console.log(`Working on Property #${i}`);
         }
-        propertyStr += createCassandraPropertyStr(faker.random.arrayElement(cities), faker.random.arrayElement(blockUrls));
+        propertyStr += createCassandraPropertyStrByRating(faker.random.arrayElement(cities), faker.random.arrayElement(blockUrls));
       }
 
       if (propertyStr.length) {
