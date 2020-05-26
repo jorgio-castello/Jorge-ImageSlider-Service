@@ -71,3 +71,6 @@ const writeCassandraPropertyData = () => {
 
 // writeMariaPropertyData();
 writeCassandraPropertyData();
+
+// Work on generating three sets of Cassandra Data for queries
+// We will need to update Cassandra OG table to include rating, price, beds
