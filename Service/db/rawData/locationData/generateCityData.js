@@ -18,8 +18,7 @@ const generateTxtDataForMaria = (cityStrMaria) => {
       throw new Error(err);
     }
     const endTime = new Date();
-    console.log(`Finished writing city data to ${path.basename(mariaTxtFilePath)}
-      in ${Math.floor(endTime.getTime() / 1000 - startTime.getTime() /1000)}s`
+    console.log(`Finished writing city data to ${path.basename(mariaTxtFilePath)} in ${Math.floor(endTime.getTime() / 1000 - startTime.getTime() /1000)}s`
     );
   });
 };
@@ -39,13 +38,11 @@ const generateCSVDataForCassandra = (cityArrCassandra, count = 0) => {
     });
   } else {
     const endTime = new Date();
-    console.log(`Finished writing city data to ${path.basename(cassandraCSVFilePath)}
-      in ${Math.floor(endTime.getTime() / 1000 - startTime.getTime() /1000)}s`
+    console.log(`Finished writing city data to ${path.basename(cassandraCSVFilePath)} in ${Math.floor(endTime.getTime() / 1000 - startTime.getTime() /1000)}s`
     );
   }
 }
 // ----------------------------------------------------------------------------------
-const cityStrMaria = createCityStringMaria(10000);
-const cityArrCassandra = createCityStringCassandra(10000000, generateCSVDataForCassandra);
-// generateCSVDataForCassandra(cityArrCassandra);
-// generateTxtDataForMaria(cityStr);
+
+module.exports.generateTxtDataForMaria = generateTxtDataForMaria;
+module.exports.generateCSVDataForCassandra = generateCSVDataForCassandra;
