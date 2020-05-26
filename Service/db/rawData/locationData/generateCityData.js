@@ -2,9 +2,8 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 
-const { createCityString } = require('./helpers/createCityString');
+const { createCityStringMaria, createCityStringCassandra } = require('./helpers/createCityString');
 
-const numberOfLocations = 10000; // Drives the number of locations in this file
 const mariaTxtFilePath = path.join(__dirname, 'MariaCityData.txt');
 const cassandraCSVFilePath = path.join(__dirname, 'CassandraCityData.csv');
 
@@ -26,20 +25,19 @@ const generateTxtDataForMaria = (cityStrMaria) => {
 // ----------------------------------------------------------------------------------
 // CASSANDRA - Location Data csv file generation for bulk loading into DB
 // ----------------------------------------------------------------------------------
-const generateCSVDataForCassandra = (cityStrCassandra) => {
-  const startTime = new Date();
-  console.log(`Writing city data for Cassandra to ${path.basename(cassandraCSVFilePath)}`);
-  fs.appendFile(cassandraCSVFilePath, cityStrCassandra, (err) => {
-    if (err) {
-      throw new Error(err);
-    } else {
-      const endTime = new Date();
-      console.log(`Finished writing city date to ${path.basename(mariaTxtFilePath)} in ${endTime.getTime() / 1000 - startTime.getTime() /1000}s`);
-    }
-  });
-
+const generateCSVDataForCassandra = (cityArrCassandra, count = 0) => {
+  if (cityArrCassandra.length !== count) {
+    fs.appendFile(cassandraCSVFilePath, cityArrCassandra[count], (err) => {
+      if (err) {
+        throw new Error(err);
+      } else {
+        generateCSVDataForCassandra(cityArrCassandra, count + 1);
+      }
+    });
+  }
 }
 // ----------------------------------------------------------------------------------
-const cityStr = createCityString(numberOfLocations);
-generateCSVDataForCassandra(cityStr);
-// generateTxtDataForMaria(cityStrMaria);
+const cityStrMaria = createCityStringMaria(10000);
+const cityArrCassandra = createCityStringCassandra(10000000, generateCSVDataForCassandra);
+// generateCSVDataForCassandra(cityArrCassandra);
+// generateTxtDataForMaria(cityStr);
