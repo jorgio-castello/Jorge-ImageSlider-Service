@@ -20,7 +20,7 @@ rm $cassandraPropertyByPriceCSV || true
 rm $cassandraPropertyByBedsCSV || true
 
 # # Create new text files
-node $createLocationCSV
+node --max-old-space-size=20000 $createLocationCSV
 node --max-old-space-size=20000 $createPropertyData
 
 # Seed database
