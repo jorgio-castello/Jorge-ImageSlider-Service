@@ -10,12 +10,15 @@ const photoBlockUrls = path.join(__dirname, '../photoData/S3-picture-urls.txt');
 
 const { createCassandraPropertyData, createMariaPropertyData } = require('./helpers/createPropertyData');
 
+// ----------------------------------------------------------------------------------
+// MARIA - Write Property Data to .txt file
+// ----------------------------------------------------------------------------------
 const writeMariaPropertyData = () => {
   fs.readFile(photoBlockUrls, 'utf-8', (err, photoBlocksStr) => {
     if (err) {
       throw new Error(err);
     } else {
-      const blockUrls = photoBlocksStr.split(os.EOL);
+      const blockUrls = photoBlocksStr.split(os.EOL); // Grab the photo data
       const propertyMariaStringsArr = createMariaPropertyData(blockUrls, numberOfProperties);
 
       const createMariaPropertyTxtFile = (count = 0) => {
@@ -40,6 +43,9 @@ const writeMariaPropertyData = () => {
   });
 };
 
+// ----------------------------------------------------------------------------------
+// CASSANDRA - Write Property Data to .csv file
+// ----------------------------------------------------------------------------------
 const writeCassandraPropertyData = () => {
   fs.readFile(photoBlockUrls, 'utf-8', (err, photoBlocksStr) => {
     if (err) {
