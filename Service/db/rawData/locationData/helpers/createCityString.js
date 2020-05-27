@@ -2,6 +2,7 @@ const faker = require('faker');
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
+const uuid = require('uuid');
 
 const { generatePropertyType,   // generates a random property
   numberOfBeds,           // generates a random number of beds based on property type
@@ -40,6 +41,7 @@ const createCityStringCassandra = (numberOfLocations, callback) => {
   fs.readFile(path.join(__dirname,'../MariaCityData.txt'), 'utf-8', (err, data) => {
     // Split the cities from the MariaStr into an array, copying the second element
     const cities = data.split(os.EOL).map(city => city.split(',')).map(city => city[1]);
+    cities.pop(); // Remove undefined element from citiesArr
     let cassandraCityStr = ''; // This string will include the cities in a cassandraStrFormat
     let cassandraCityStrArr = []; // Due to JS maximum strength, temp strings will be stored in an array
 
@@ -52,13 +54,14 @@ const createCityStringCassandra = (numberOfLocations, callback) => {
 
       // Cassandra locations table also includes data regarding property type, ratings, prices, and number of beds
       const city = faker.random.arrayElement(cities);
+      const createdAt = uuid.v1();
       const propertyType = generatePropertyType();
       const bedNum = numberOfBeds[propertyType]();
       const pricePerNight = bedNum * priceByPropertyPerRoom[propertyType]();
       const rating = generateRandomNumber(100, 500) / 100;
 
 
-      cassandraCityStr += `${i},${bedNum},${city},${pricePerNight},${propertyType},${rating}${os.EOL}`;
+      cassandraCityStr += `${i},${createdAt},${bedNum},${city},${pricePerNight},${propertyType},${rating}${os.EOL}`;
     }
 
     if ( cassandraCityStr.length ) {
