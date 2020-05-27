@@ -51,12 +51,12 @@ const createCassandraPropertyData = (blockUrls, numberOfProperties, callback) =>
         }
 
         // Grab appropriate data from locations table to maintain constistency during db seeding
-        const [ propertyId, bedNums, city, pricePerNight, propertyType, rating ] = cities[i - 1];
+        const [ propertyId, uuid, bedNums, city, pricePerNight, propertyType, rating ] = cities[i - 1];
 
         // Generate other data needed for Cassandra Property Str
         const randomBlockUrl = faker.random.arrayElement(blockUrls);
 
-        propertyStr += createCassandraPropertyStrByRating(city, randomBlockUrl, propertyType, rating, bedNums, pricePerNight);
+        propertyStr += createCassandraPropertyStrByRating(city, randomBlockUrl, propertyType, rating, bedNums, pricePerNight, uuid);
       }
 
       if (propertyStr.length) {
