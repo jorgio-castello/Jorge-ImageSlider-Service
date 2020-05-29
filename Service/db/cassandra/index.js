@@ -7,14 +7,3 @@ const client = new cassandra.Client({
 });
 
 console.log(client);
-
-// const query = 'insert into locations (address_id, location) values(?,?)';
-// const params = [1, "Los Angeles"];
-
-// client.execute(query, params, { prepare: true }, err => {
-//   if (err) {
-//     throw new Error(err);
-//   } else {
-//     console.log('Successfully inserted...');
-//   }
-// });
