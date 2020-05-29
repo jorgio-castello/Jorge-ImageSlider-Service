@@ -14,5 +14,6 @@ db/rawData/propertyData/MariaPropertyData.txt
 db/rawData/propertyData/CassandraPropertyData.csv
 db/rawData/propertyData/CassandraPropertyDataByBeds.csv
 db/rawData/propertyData/CassandraPropertyDataByPrice.csv
+db/rawData/propertyData/CassandraPropertyDataByPropertyType.csv
 db/rawData/photoData/photos/
 db/rawData/photoData/S3-picture-urls.txt
