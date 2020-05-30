@@ -105,7 +105,7 @@ const MainCarElement = (props) => {
         <ElementCarousel images={currentRoom.img_src} />
         <MHYML_Element_Info_Top>
           <MHYML_Room_Type>
-            {currentRoom.room_type}
+            {currentRoom.property_type}
             :
             {' '}
             {currentRoom.bed_num}
