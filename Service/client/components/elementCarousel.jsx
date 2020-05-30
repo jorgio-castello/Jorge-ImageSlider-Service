@@ -113,7 +113,7 @@ class ElementCarousel extends React.Component {
         }
 
         <MHYML_Transformer state={this.state.translateX}>
-          {this.state.imgData.map(image => <img src={image} alt='houses' key={image} style={{borderRadius: '3px'}}></img>)}
+          {this.state.imgData.map(image => <img src={image} alt='houses' loading="lazy" key={image} style={{borderRadius: '3px', height: '222px', width: '333px', 'object-fit': 'cover'}} />)}
         </MHYML_Transformer>
 
         {this.state.hovered &&
