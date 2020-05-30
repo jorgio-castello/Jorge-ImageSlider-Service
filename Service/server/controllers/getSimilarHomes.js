@@ -1,10 +1,11 @@
 // Models
 const { handleLocationQuery } = require('../../db/cassandra/models/handleGetRequest');
 // Helpers
-const { handleSpecificPropertyQuery, handleGeneralPropertyQuery } = require('./helpers/getSimilarHomesHelpers');
+const { reassignParamsIfEmpty, handleSpecificPropertyQuery, handleGeneralPropertyQuery } = require('./helpers/getSimilarHomesHelpers');
 
 const getSimilarHomes = (req, res) => {
-  const { id, rankBy, limit } = req.params;
+  const [id, rankBy, limit] = reassignParamsIfEmpty(req.params);
+
   handleLocationQuery(id, (locationQueryErr, locationQueryData) => {
     if (locationQueryErr) {
       throw new Error(locationQueryErr);
