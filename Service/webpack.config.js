@@ -46,6 +46,7 @@ module.exports = {
       }
     }
   },
+  mode:'production',
   plugins: [
     new webpack.DefinePlugin({ //<--key to reduce React's size
       'process.env': {
