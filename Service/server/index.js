@@ -3,6 +3,7 @@ const cache = require('express-cache-controller');
 
 // Controllers
 const { getSimilarHomes } = require('./controllers/getSimilarHomes');
+const { postNewProperty } = require('./controllers/postNewProperty');
 
 const app = express();
 app.use(express.json());
@@ -19,3 +20,4 @@ app.get('*.js', (req, res, next) => {
 });
 
 app.get('/properties/:id/similarHomes/:rankBy?/:limit?', getSimilarHomes);
+app.post('/properties/createProperty', postNewProperty);
