@@ -30,5 +30,14 @@ const handleGeneralPropertyQuery = (data, location, limit, callback) => {
   getData();
 };
 
+const reassignParamsIfEmpty = ({ id, rankBy, limit }) => {
+  if (id === 'null') {
+    return [Math.floor(Math.random(0, 1) * 10000000)];
+  }
+
+  return [id, rankBy, limit];
+};
+
 module.exports.handleSpecificPropertyQuery = handleSpecificPropertyQuery;
 module.exports.handleGeneralPropertyQuery = handleGeneralPropertyQuery;
+module.exports.reassignParamsIfEmpty = reassignParamsIfEmpty;
