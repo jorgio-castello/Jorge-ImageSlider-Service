@@ -10,20 +10,24 @@ const assemblePropertyQuery = (table, location, queryCharacteristic, limitNumber
 
   switch (table) {
     case 'rating':
-      return query += ` limit ${limitNumber};`;
+      query += ` limit ${limitNumber};`;
+      return query;
     case 'price':
-      return query += ` and price_per_night < ${queryCharacteristic} limit ${limitNumber};`;
+      query += ` and price_per_night < ${queryCharacteristic} limit ${limitNumber};`;
+      return query;
     case 'propertyType':
-      return query += ` and property_type='${queryCharacteristic}' limit ${limitNumber};`;
+      query += ` and property_type='${queryCharacteristic}' limit ${limitNumber};`;
+      return query;
     case 'numberOfBeds':
-      return query += ` and bed_num=${queryCharacteristic} limit ${limitNumber};`;
+      query += ` and bed_num=${queryCharacteristic} limit ${limitNumber};`;
+      return query;
     default:
       throw new Error('Table does not exist for this query');
   }
 };
 
 const cleanUpPropertyQuery = (resultArr) => {
-  return resultArr.map(row => {
+  return resultArr.map((row) => {
     row.uuid = row.uuid.toString();
     row.rating = row.rating.toString();
     return row;
