@@ -10,9 +10,9 @@ const handleLocationQuery = (id, callback) => {
 };
 
 const handlePropertyQuery = (table, location, queryCharacteristic, limitNumber, callback) => {
-  const query = assemblePropertyQuery(table, location, queryCharacteristic, limitNumber);
+  const { query, params } = assemblePropertyQuery(table, location, queryCharacteristic, limitNumber);
 
-  db.execute(query)
+  db.execute(query, params, { prepare: true })
     .then((data) => cleanUpPropertyQuery(data.rows))
     .then((propertyInformation) => callback(null, propertyInformation))
     .catch((err) => callback(err));
