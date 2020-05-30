@@ -2,6 +2,7 @@ import React from 'react';
 import Axios from 'axios';
 import styled from 'styled-components';
 import MainCarousel from './mainCarousel.jsx';
+import getPictureData from './helpers';
 
 // styling:
 
@@ -43,10 +44,16 @@ class App extends React.Component {
   }
 
   getRoomsData() {
-    Axios.get('/rooms')
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+
+    Axios.get(`/properties/${id}/similarHomes`)
       .then((results) => {
-        this.setState({
-          data: results.data,
+        const { data } = results;
+        getPictureData(data, (pictureData) => {
+          this.setState({
+            data: pictureData,
+          });
         });
       })
       .catch((err) => { console.error(err); });
