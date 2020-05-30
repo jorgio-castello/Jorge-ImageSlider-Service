@@ -20,6 +20,3 @@ const handlePropertyQuery = (table, location, queryCharacteristic, limitNumber, 
 
 module.exports.handleLocationQuery = handleLocationQuery;
 module.exports.handlePropertyQuery = handlePropertyQuery;
-
-// handleLocationQuery(50, (err, result) => console.log(result));
-// handlePropertyQuery('price', 'Ziemestad', 1200, 4, (data) => console.log(data));
