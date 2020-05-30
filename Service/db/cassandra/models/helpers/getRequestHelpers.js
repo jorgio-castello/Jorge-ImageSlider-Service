@@ -6,21 +6,33 @@ const cleanUpLocationQuery = (resultArr) => {
 };
 
 const assemblePropertyQuery = (table, location, queryCharacteristic, limitNumber) => {
-  let query = `select * from propertiesby${table} where location='${location}'`;
+  let query = `select * from propertiesby${table} where location=?`;
 
   switch (table) {
     case 'rating':
-      query += ` limit ${limitNumber};`;
-      return query;
+      query += ' limit ?';
+      return {
+        query,
+        params: [location, limitNumber],
+      };
     case 'price':
-      query += ` and price_per_night < ${queryCharacteristic} limit ${limitNumber};`;
-      return query;
+      query += ' and price_per_night < ? limit ?';
+      return {
+        query,
+        params: [location, queryCharacteristic, limitNumber],
+      };
     case 'propertyType':
-      query += ` and property_type='${queryCharacteristic}' limit ${limitNumber};`;
-      return query;
+      query += ' and property_type=? limit ?';
+      return {
+        query,
+        params: [location, queryCharacteristic, limitNumber],
+      };
     case 'numberOfBeds':
-      query += ` and bed_num=${queryCharacteristic} limit ${limitNumber};`;
-      return query;
+      query += ' and bed_num=? limit ?';
+      return {
+        query,
+        params: [location, queryCharacteristic, limitNumber],
+      };
     default:
       throw new Error('Table does not exist for this query');
   }
