@@ -5,11 +5,15 @@
 ## Goals and Outcomes 
 > The primary goal of this project was to create the backend for an API that met the following specifications: 
 > - 2,500+ requests per second (RPS) 
-> - less than 1s of latency per request 
-> - and less than 1% error rate during a stress test
+> - less than 1.0s of latency per request 
+> - less than 1.0% error rate during a stress test
 
-> The screenshot below illustrates the architecture deployed to AWS that achieved the following statistics:
-> -
+> The following screenshots present the stress test results for the version final backend architecture:
+> - 3,500+ requests per second (RPS) 
+> - 0.8s average latency 
+> - 0.0% error rate
+<img src="https://airbnbslider.s3-us-west-1.amazonaws.com/SDC+Stress+Test.png" height=500>
+<img src="https://airbnbslider.s3-us-west-1.amazonaws.com/SDC+Architecture+Visualization.png" height=500>
 
 ## Learn more about this Recommendation Engine
 - <a href="https://github.com/jorgio-castello/Similar-Properties-API/tree/master/Service/server">API Server</a> - available API queries and how to build a custom list of properties to present to a target user
