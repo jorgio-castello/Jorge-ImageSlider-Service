@@ -1,6 +1,7 @@
 require('newrelic');
 const express = require('express');
 const cache = require('express-cache-controller');
+const cors = require('cors');
 
 // Controllers
 const { getSimilarHomes } = require('./controllers/getSimilarHomes');
@@ -10,6 +11,7 @@ const { deleteProperty } = require('./controllers/deleteProperty');
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 const PORT = 3004;
 app.listen(PORT, () => { console.log(`Express server listening on port#${PORT}`); });

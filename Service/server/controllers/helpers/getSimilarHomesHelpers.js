@@ -1,6 +1,12 @@
 const { tableToCharacteristicMap, tableToCharacteristicArr } = require('./tableGlossary');
 const { handlePropertyQuery } = require('../../../db/cassandra/models/handleGetRequest');
 
+const redisUrl = '34.220.94.109';
+const redisPort = 6379;
+
+const redisClient = require('redis').createClient;
+const redis = redisClient(redisPort, redisUrl);
+
 const handleSpecificPropertyQuery = (data, table, location, limit, callback) => {
   const tableCharacteristic = tableToCharacteristicMap[table];
   const queryDataPoint = data[tableCharacteristic];
