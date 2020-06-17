@@ -17,3 +17,6 @@ db/rawData/propertyData/CassandraPropertyDataByPrice.csv
 db/rawData/propertyData/CassandraPropertyDataByPropertyType.csv
 db/rawData/photoData/photos/
 db/rawData/photoData/S3-picture-urls.txt
+
+newrelic.js
+newrelic_agent.log
