@@ -39,10 +39,10 @@ const getSimilarHomes = (req, res) => {
                 throw new Error(propertyErr);
              } else {
                redis.set(uuid, JSON.stringify(propertyData));
-	       res.json(propertyData);
+	              res.json(propertyData);
              }
           });
-	}
+	      }
       });
     }
   });
