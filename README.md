@@ -21,7 +21,7 @@
 - <a href="https://github.com/jorgio-castello/Similar-Properties-API/tree/master/Service">Optimization</a> - information related to decisions made to improve performance
 
 ## Getting Started
-> Ensure Node (6.1 or higher) and Cassandra (3.1 or higher)are installed to work with this API in a local environment.
+> Ensure Cassandra, Node, and Redis are installed to work with this API in a local environment.
 
 > To install dependencies:
 
