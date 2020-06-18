@@ -1,26 +1,22 @@
 ## Similar Properties API
 <hr />
 
-### Get similar properties info
-  * GET `/properties/:id/similarHomes`
-  *  __Default:__ Responds with 12 similar properties in the same city as the currently viewed listing
-  * __Optional:__ Request's body can optionally include:
-      *  rankBy: rating, bed_num, __OR__ price_per_night
-      * limit: number
-
-
-
-**Path Parameters:**
+### GET - similar properties info for a specific property
+  > GET `/properties/:id/similarHomes/[:rankBy]/[:limit]`
+  
+  **Path Parameters:**
   * `id` property id
-
-**Optional Request Body**: Can accept JSON with the following keys to rank results by rating, number of beds, or price.
-
-```json
-    {
-      "rankBy": "[rating || bed_num || price_per_night]",
-      "limit": "Number"
-    }
-```
+  * `[rankBy]` numberOfBeds, propertyType, price, or rating
+  * `[limit]` integer 1 or greater
+  
+  -  __Default:__ Responds with 12 similar properties in the same city as the currently viewed listing:
+     - 3 similar properties by number of beds
+     - 3 similar properties by property type
+     - 3 similar properties by price
+     - 3 similar properties by rating
+  * __Optional:__ Responds with similar properties by a particular characteristic (default limit is 1):
+      * rankBy options: numberOfBeds, propertyType, price, rating
+      * limit options: integers 1 or greater
 
 **Success Status Code:** `200`
 
@@ -29,24 +25,22 @@
 ```json
     "[
       {
-        "id": "Number",
         "location": "String",
+        "uuid": "String",
         "rating": "Number",
         "property_type": "String",
         "bed_num": "Number",
         "description": "String",
         "price_per_night": "Number",
-        "img_src": "[ "String" ]"
+        "awsblockurl": "String"
       },
       ...
     ]"
 ```
 <hr />
 
-### Add property
-  * POST `/properties/createProperty`
-
-**Success Status Code:** `201`
+### Add a new property (POST)
+  > POST `/properties/createProperty`
 
 **Request Body**: Expects JSON with the following keys.
 
@@ -58,7 +52,7 @@
       "bed_num": "Number",
       "description": "String",
       "price_per_night": "Number",
-      "img_src": [ "String" ]
+      "awsblockurl": "String"
     }
 ```
 **Success Status Code:** `201`
@@ -79,7 +73,7 @@
       "rating": "Number",
       "description": "String",
       "price_per_night": "Number",
-      "img_src": [ "String" ]
+      "awsblockurl": "String"
     }
 ```
 <hr />
