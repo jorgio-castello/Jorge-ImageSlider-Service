@@ -21,23 +21,34 @@
 - <a href="https://github.com/jorgio-castello/Similar-Properties-API/tree/master/Service">Optimization</a> - information related to decisions made to improve performance
 
 ## Getting Started
+> Ensure Node (6.1 or higher) and Cassandra (3.1 or higher)are installed to work with this API in a local environment.
 
-> Some usage instructions
+> To install dependencies:
 
-## Development
-
-### Installing Dependencies
-
-From within the root directory:
-
-```sh
-npm install -g webpack
+```
 npm install
 ```
 
+
+> To create test data:
+```
+npm run createData
+```
+
+
+> To seed Cassandra:
+```
+npm run seedCassandra
+```
+
+
+> To start local development server:
+```
+npm start
+```
+
+
 ## Related Projects
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - Booking API: https://github.com/CheaperByTheDozen/Nate-Booking
+  - Gallery API: https://github.com/CheaperByTheDozen/jake_image_carousel
 
