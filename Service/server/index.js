@@ -13,7 +13,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const PORT = 3004;
+const PORT = process.env.PORT || 3004;
 app.listen(PORT, () => { console.log(`Express server listening on port#${PORT}`); });
 
 app.use(cache({maxAge: 31536000}));
