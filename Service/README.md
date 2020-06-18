@@ -15,7 +15,7 @@ select * from propertiesByRating where location = 'Los Angeles' and price_per_ni
 select * from propertiesByRating where location = ? and price_per_night < ?;
 ```
 
-When executing a prepared statement from the Cassandra NodeJS driver, an array of parameters is sent along to the Cassandra nodes.
+When executing a prepared statement from the Cassandra NodeJS driver, an array of parameters is sent along to the Cassandra nodes for query execution.
 
 ## Minimizing the network impact of fetching image assets on the client
 > Rather than storing static assets as image files on Amazon Web Services (S3), the images were compressed / converted to Base-64 strings. This process was formulated with a custom AWS S3 upload script located <a href="https://github.com/jorgio-castello/Similar-Properties-API/blob/master/Service/db/rawData/photoData/helpers/uploadS3.js" target="_blank">here</a>. 
@@ -25,7 +25,7 @@ When executing a prepared statement from the Cassandra NodeJS driver, an array o
 > 3. A similar property component will likely have between 10 - 20 similar properties presented. This necessitates between 40 - 80 images to power the component, per property listing. The need to store this many images in cache for the potential benefit of reducing the impact of a profile fetch, which at maximum will occur for 1 of the 10 - 20 similar properties presented to user, is considered to be a misuse of user's hardware resources
 > 4. Lastly, the nature of the Similar Properties API is to power a component that accentuates the details of the currently viewed listing. Storing the images in blocks of 4 as JSON, reduces the amount of network requests needed by this component and enables more browser / network resources to be utilized by other components / processes
 
-> The Base-64 image strings are stored as properties in a JSON file, as shown in the example below:
+The Base-64 image strings are stored as properties in a JSON file, as shown in the example below:
 ```
 [
   {
