@@ -6,7 +6,7 @@ const cors = require('cors');
 // Controllers
 const { getSimilarHomes } = require('./controllers/getSimilarHomes');
 const { postNewProperty } = require('./controllers/postNewProperty');
-// const { patchProperty } = require('./controllers/patchProperty');
+const { patchProperty } = require('./controllers/patchProperty');
 const { deleteProperty } = require('./controllers/deleteProperty');
 
 const app = express();
@@ -26,7 +26,7 @@ app.get('*.js', (req, res, next) => {
 
 app.get('/properties/:id/similarHomes/:rankBy?/:limit?', getSimilarHomes);
 app.post('/properties/createProperty', postNewProperty);
-// app.patch('/properties/:id/similarHomes', patchProperty);
+app.patch('/properties/:id/similarHomes', patchProperty);
 app.delete('/properties/:id/similarHomes', deleteProperty);
 
 // Will need to update locations schema in order to properly create PATCH Request
