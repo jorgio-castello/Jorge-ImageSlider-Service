@@ -66,14 +66,14 @@
 
 **Success Status Code:** `204`
 
-**Request Body**: Expects JSON with any of the following keys (includes only keys to be updated)
+**Request Body**: Expects JSON with any of the following properties (only include properties to be updated)
 
 ```json
     {
-      "rating": "Number",
-      "description": "String",
-      "price_per_night": "Number",
-      "awsblockurl": "String"
+      "newRating": "Number",
+      "newDescription": "String",
+      "newPrice_per_night": "Number",
+      "newAwsblockurl": "String"
     }
 ```
 <hr />
