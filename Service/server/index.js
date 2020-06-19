@@ -28,6 +28,3 @@ app.get('/properties/:id/similarHomes/:rankBy?/:limit?', getSimilarHomes);
 app.post('/properties/createProperty', postNewProperty);
 app.patch('/properties/:id/similarHomes', patchProperty);
 app.delete('/properties/:id/similarHomes', deleteProperty);
-
-// Will need to update locations schema in order to properly create PATCH Request
-// The location schema needs to include all relevant data about the property, so that a successful patch request can bee created, need to awsBlockUrl, and description
