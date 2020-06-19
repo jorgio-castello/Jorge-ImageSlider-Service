@@ -1,17 +1,9 @@
 const db = require('..');
 const { handleLocationQuery } = require('./handleGetRequest');
-const { assemblePropertyPatchQuery } = require('./helpers/patchRequestHelpers');
-const { assembleDeleteRequest } = require('./helpers/deleteRequestHelpers');
-const { assemblePropertyInsertionQuery } = require('./helpers/postRequestHelpers');
+const { generateUpdatedCassandraData, generateDeleteQueries, generateNewInsertQueries } = require('./helpers/patchRequestHelpers');
 
-let dictionary = {
-  numberOfBeds: 'bed_num',
-  propertyType: 'property_type',
-  price: 'price_per_night',
-  rating: 'rating',
-};
 
-const handlePatchRequest = ({ id }, { newRating, newPrice_per_night, newDescription, newAwsblockurl }, tableToCharacteristicMap, tableToCharacteristicArr, callback) => {
+const handlePatchRequest = ({ id }, updateParams, tablesIndexObj, tablesIndexArr, callback) => {
   handleLocationQuery(id, (err, data) => {
     if (err) {
       throw new Error(err);
@@ -26,55 +18,21 @@ const handlePatchRequest = ({ id }, { newRating, newPrice_per_night, newDescript
       db.execute(getDetailsQuery, getDetailsParams, { prepare: true })
         .then(data => data.rows[0])
         .then(row => {
-          let updatedCassandraData = {
-            location,
-            uniqueUUID: uuid,
-            bed_num: row.bed_num,
-            property_type: row.property_type,
-            awsBlockUrl: newAwsblockurl || row.awsblockurl,
-            rating: newRating || row.rating,
-            description: newDescription || row.description,
-            price_per_night: newPrice_per_night || row.price_per_night,
-          }
-
-          // Delete existing rows of the same uuid
-          let deleteQueries = ['numberOfBeds', 'propertyType', 'price', 'rating'].map(table => {
-            return assembleDeleteRequest(table, location, uuid, row[dictionary[table]]);
-          });
-
-          deleteQueries.push({
-            query: 'delete from locations where address_id=?',
-            params: [id],
-          });
-
-          // Post updatedCassandra row into all tables
-          let insertUpdateQueries = ['numberOfBeds', 'propertyType', 'price', 'rating'].map(table => {
-            return assemblePropertyInsertionQuery(table, updatedCassandraData);
-          });
-
-
-          let { bed_num, property_type, price_per_night, rating } = updatedCassandraData;
-
-          insertUpdateQueries.push({
-            query: 'insert into locations(address_id,uuid,bed_num,location,price_per_night,property_type,rating) values(?,?,?,?,?,?,?);',
-            params: [id, uuid, bed_num, location, price_per_night, property_type, rating],
-          });
+          const updatedCassandraData = generateUpdatedCassandraData(row, updateParams);
+          const deleteQueries = generateDeleteQueries(tablesIndexArr, tablesIndexObj, id, location, uuid, row);
+          const insertQueries = generateNewInsertQueries(tablesIndexArr, id, location, uuid, updatedCassandraData);
 
           db.batch(deleteQueries, { prepare: true })
             .then(() => {
-              db.batch(insertUpdateQueries, { prepare: true })
-                .then(success => console.log(success))
-                .catch(err => console.log(err));
+              db.batch(insertQueries, { prepare: true })
+                .then(success => callback(null, success))
+                .catch(err => callback(err));
             })
-            .catch(err => console.log(err));
-
-
+            .catch(err => callback(err));
         })
-        .catch(err => console.log(err));
+        .catch(err => callback(err));
     }
   });
 };
-
-
 
 module.exports.handlePatchRequest = handlePatchRequest;
