@@ -1,11 +1,16 @@
-// // Models
-// const { handlePatchRequest } = require('../../db/cassandra/models/handlePatchRequest');
+// Models
+const { handlePatchRequest } = require('../../db/cassandra/models/handlePatchRequest');
+const { tableToCharacteristicMap, tableToCharacteristicArr } = require('./helpers/tableGlossary');
 
-// const patchProperty = (req, res) => {
-//   handlePatchRequest(req.params, req.body);
-// };
+const patchProperty = (req, res) => {
+  handlePatchRequest(req.params, req.body, tableToCharacteristicMap, tableToCharacteristicArr, (err) => {
+    if (err) {
+      throw new Error(err);
+    } else {
+      res.status(204);
+      res.end();
+    }
+  });
+};
 
-// module.exports.patchProperty = patchProperty;
-
-// Will need to update locations schema in order to properly create PATCH Request
-// The location schema needs to include all relevant data about the property, so that a successful patch request can bee created, need to awsBlockUrl, and description
+module.exports.patchProperty = patchProperty;
